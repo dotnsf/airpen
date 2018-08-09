@@ -45,27 +45,37 @@ function touchEnd( e ){
     ctx.fillStyle = "rgb( 255, 255, 255 )";
     ctx.fillRect( 0, 0, 200, 200 );
 
-    //. 最後のデータ
-    var abg = touchData[touchData.length-1];
-    var x = abg['lr'];
-    var y = abg['fb'];
-
-    ctx.beginPath();
-    ctx.fillStyle = "rgb( 255, 0, 0 )";
-    ctx.arc( 2 * x + 100, -2 * y + 100, 10, 0, Math.PI * 2, true );
-    ctx.fill();
+    var abg = null;
+    var x, y;
 
     //. 最初のデータ
     abg = touchData[0];
     x = abg['lr'];
     y = abg['fb'];
 
+    //. 始点をマーク（緑）
     ctx.beginPath();
     ctx.fillStyle = "rgb( 0, 255, 0 )";
     ctx.arc( 2 * x + 100, -2 * y + 100, 10, 0, Math.PI * 2, true );
     ctx.fill();
 
-    //. 始点をマーク
+    //. 最後のデータ
+    abg = touchData[touchData.length-1];
+    x = abg['lr'];
+    y = abg['fb'];
+
+    //. 終点をマーク（赤）
+    ctx.beginPath();
+    ctx.fillStyle = "rgb( 255, 0, 0 )";
+    ctx.arc( 2 * x + 100, -2 * y + 100, 10, 0, Math.PI * 2, true );
+    ctx.fill();
+
+    //. もう一度、最初のデータ
+    abg = touchData[0];
+    x = abg['lr'];
+    y = abg['fb'];
+
+    //. ペンを始点に移動
     ctx.beginPath();
     ctx.strokeStyle = "rgb( 0, 0, 0 )";
     ctx.lineWidth = 5;
@@ -73,6 +83,7 @@ function touchEnd( e ){
 
     //. ２つ目以降のデータ
     for( var i = 1; i < touchData.length; i ++ ){
+      //. ペンの移動を繰り返す
       abg = touchData[i];
       x = abg['lr'];
       y = abg['fb'];
