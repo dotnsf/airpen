@@ -47,6 +47,7 @@ function touchStart( e ){
   //. 下半分をタッチした時のみ
   if( touchY > ( window.innerHeight / 2 ) ){
     isTouch = true;
+    $('#result').html( '' );
     touchData = [];
   }
 }
